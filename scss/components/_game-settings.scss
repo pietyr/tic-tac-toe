@@ -1,0 +1,7 @@
+@use '../utilities/variables' as var;
+
+.game-settings {
+  &__player {
+    background-color: var.$semi-dark-navy;
+  }
+}
