@@ -1,5 +1,11 @@
+@use '../utilities/variables' as var;
+
 :root {
   font-family: 'Outfit', sans-serif;
+}
+
+body {
+  background-color: var.$dark-navy;
 }
 
 button {
