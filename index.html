@@ -19,7 +19,33 @@
         </h1>
         <div class="game-settings__player">
           <h2 class="game-settings__h2">Pick player 1's mark</h2>
-          <div><input type="checkbox" name="" id="" />X</div>
+          <div class="game-settings__radio-container">
+            <input
+              class="game-settings__radio-input"
+              type="radio"
+              name="mark"
+              id="radio-x"
+            />
+            <label
+              class="game-settings__radio-label game-settings__radio-label-x"
+              for="radio-x"
+            >
+              <img src="./assets/icon-x.svg" alt="X" />
+            </label>
+            <input
+              class="game-settings__radio-input"
+              type="radio"
+              name="mark"
+              id="radio-o"
+              checked
+            />
+            <label
+              class="game-settings__radio-label game-settings__radio-label-o"
+              for="radio-o"
+            >
+              <img src="./assets/icon-o.svg" alt="O" />
+            </label>
+          </div>
           <p class="game-settings__text">Remember: X goes first</p>
         </div>
         <div class="game-settings__button-container">

@@ -17,6 +17,13 @@
     text-transform: uppercase;
   }
 
+  &__radio-input {
+    position: relative;
+
+    opacity: 0;
+    pointer-events: none;
+  }
+
   &__text {
     color: var.$gray;
     font-weight: map.get(font.$font-weights, 'body');
