@@ -1,7 +1,40 @@
 @use '../utilities/variables' as var;
+@use '../utilities/typography' as font;
+@use 'sass:map';
 
 .game-settings {
   &__player {
     background-color: var.$semi-dark-navy;
+  }
+
+  &__h2 {
+    color: var.$silver;
+    font-weight: map.get(font.$font-weights, 'heading');
+    font-size: map.get(font.$font-sizes, 'heading-xs');
+    letter-spacing: map.get(font.$font-kerning, 'heading-xs');
+    text-transform: uppercase;
+  }
+
+  &__text {
+    color: var.$gray;
+    font-weight: map.get(font.$font-weights, 'body');
+    font-size: map.get(font.$font-sizes, 'body');
+    letter-spacing: map.get(font.$font-kerning, 'body');
+    text-transform: uppercase;
+  }
+
+  &__button {
+    border: none;
+    color: var.$dark-navy;
+    font-weight: map.get(font.$font-weights, 'heading');
+    font-size: map.get(font.$font-sizes, 'heading-s');
+    letter-spacing: map.get(font.$font-kerning, 'heading-s');
+    text-transform: uppercase;
+    &--yellow {
+      background-color: var.$light-yellow;
+    }
+    &--blue {
+      background-color: var.$light-blue;
+    }
   }
 }

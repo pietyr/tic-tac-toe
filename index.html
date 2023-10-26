@@ -13,21 +13,31 @@
   </head>
   <body class="body">
     <main class="board">
-      <section class="game-settings">
+      <section class="board__content game-settings">
         <h1>
           <img src="./assets/logo.svg" alt="Tic Tac Toe game" />
         </h1>
         <div class="game-settings__player">
-          <h2>Pick player 1's mark</h2>
+          <h2 class="game-settings__h2">Pick player 1's mark</h2>
           <div><input type="checkbox" name="" id="" />X</div>
-          <p>Remember: X goes first</p>
+          <p class="game-settings__text">Remember: X goes first</p>
         </div>
-        <div>
-          <button type="button">New game (VS CPU)</button>
-          <button type="button">New game (VS Player)</button>
+        <div class="game-settings__button-container">
+          <button
+            type="button"
+            class="game-settings__button game-settings__button--yellow"
+          >
+            New game (VS CPU)
+          </button>
+          <button
+            type="button"
+            class="game-settings__button game-settings__button--blue"
+          >
+            New game (VS Player)
+          </button>
         </div>
       </section>
-      <section class="game">
+      <section class="board__content game">
         <h1>
           <img src="./assets/logo.svg" alt="Tic Tac Toe game" />
         </h1>
