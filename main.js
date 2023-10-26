@@ -1,16 +1,27 @@
 import './scss/main.scss';
 
+let playerMark = 'o';
+
 const buttonX = document.querySelector('#radio-x');
 const buttonO = document.querySelector('#radio-o');
+const radioSelector = document.querySelector('.game-settings__radio-selector');
 
-buttonX.addEventListener('click', (e) => {
-  console.log(`buttonX clicked`);
-  console.log(`checked = ${buttonX.checked}`);
-  console.log(`buttonO checked = ${buttonO.checked}`);
+buttonX.addEventListener('click', () => {
+  if (playerMark === 'o') {
+    // radioSelector.style.animationDirection = 'reverse';
+    radioSelector.style.animationPlayState = 'running';
+  }
+  playerMark = 'x';
 });
 
-buttonO.addEventListener('click', (e) => {
-  console.log(`buttonO clicked`);
-  console.log(`checked = ${buttonO.checked}`);
-  console.log(`buttonX checked = ${buttonX.checked}`);
+buttonO.addEventListener('click', () => {
+  if (playerMark === 'x') {
+    // radioSelector.style.animationDirection = 'normal';
+    radioSelector.style.animationPlayState = 'running';
+  }
+  playerMark = 'o';
+});
+
+radioSelector.addEventListener('animationiteration', () => {
+  radioSelector.style.animationPlayState = 'paused';
 });

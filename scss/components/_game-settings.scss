@@ -23,6 +23,16 @@
 
   &__radio-selector {
     background-color: var.$silver;
+
+    animation-name: swipe;
+    animation-duration: 0.5s;
+    animation-timing-function: ease;
+    animation-fill-mode: both;
+    animation-direction: alternate;
+    animation-play-state: paused;
+    animation-iteration-count: infinite;
+
+    // animation: swipe 5s ease-in-out 0s 1 reverse both running;
   }
 
   &__radio-input {
@@ -56,5 +66,22 @@
       background-color: var.$light-blue;
       @include mixins.shadow(darken(var.$light-blue, 12.5%));
     }
+  }
+}
+
+@keyframes swipe {
+  0% {
+    width: calc(50% - 1rem);
+    right: 0.5rem;
+  }
+
+  50% {
+    width: calc(100% - 1rem);
+    right: 0.5rem;
+  }
+
+  100% {
+    width: calc(50% - 1rem);
+    right: calc(50% + 0.5rem);
   }
 }
