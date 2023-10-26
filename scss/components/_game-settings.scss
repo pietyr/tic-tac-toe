@@ -21,6 +21,10 @@
     background-color: var.$dark-navy;
   }
 
+  &__radio-selector {
+    background-color: var.$silver;
+  }
+
   &__radio-input {
     position: fixed;
     opacity: 0;

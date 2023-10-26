@@ -27,12 +27,23 @@
   }
 
   &__radio-container {
+    position: relative;
     display: flex;
     justify-content: space-between;
     width: 100%;
 
     border-radius: 0.75rem;
     padding: 0.5rem;
+  }
+
+  &__radio-selector {
+    position: absolute;
+    width: calc(50% - 0.5rem);
+    height: calc(100% - 1rem);
+    z-index: 1;
+    right: 0.5rem;
+
+    border-radius: 0.75rem;
   }
 
   &__radio-label {
@@ -45,6 +56,7 @@
 
   &__radio-image {
     width: 2rem;
+    z-index: 2;
   }
 
   &__button-container {
