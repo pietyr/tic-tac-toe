@@ -17,9 +17,12 @@
     text-transform: uppercase;
   }
 
-  &__radio-input {
-    position: relative;
+  &__radio-container {
+    background-color: var.$dark-navy;
+  }
 
+  &__radio-input {
+    position: fixed;
     opacity: 0;
     pointer-events: none;
   }
