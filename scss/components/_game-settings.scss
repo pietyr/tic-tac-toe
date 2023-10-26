@@ -1,10 +1,12 @@
 @use '../utilities/variables' as var;
 @use '../utilities/typography' as font;
+@use '../utilities/mixins' as mixins;
 @use 'sass:map';
 
 .game-settings {
   &__player {
     background-color: var.$semi-dark-navy;
+    @include mixins.shadow(darken(var.$semi-dark-navy, 7.5%));
   }
 
   &__h2 {
@@ -30,11 +32,15 @@
     font-size: map.get(font.$font-sizes, 'heading-s');
     letter-spacing: map.get(font.$font-kerning, 'heading-s');
     text-transform: uppercase;
+
+    border-radius: 1rem;
     &--yellow {
       background-color: var.$light-yellow;
+      @include mixins.shadow(darken(var.$light-yellow, 12.5%));
     }
     &--blue {
       background-color: var.$light-blue;
+      @include mixins.shadow(darken(var.$light-blue, 12.5%));
     }
   }
 }
