@@ -75,23 +75,31 @@
         </div>
       </section>
       <section class="board__content game">
-        <h1>
+        <h1 class="game__logo">
           <img src="./assets/logo.svg" alt="Tic Tac Toe game" />
         </h1>
-        <p>X Turn</p>
-        <button type="button">Restart</button>
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
-        <div>4</div>
-        <div>5</div>
-        <div>6</div>
-        <div>7</div>
-        <div>8</div>
-        <div>9</div>
-        <p>X (you) 14</p>
-        <p>Ties 32</p>
-        <p>O (CPU) 11</p>
+        <p class="game__turn">
+          <img
+            class="game__turn-icon"
+            src="./assets/icon-x--light.svg"
+            alt=""
+          /><span class="game__turn-text">X Turn</span>
+        </p>
+        <button class="game__restart" type="button">
+          <img src="./assets/icon-restart.svg" alt="Restart" />
+        </button>
+        <div class="game__cell">1</div>
+        <div class="game__cell">2</div>
+        <div class="game__cell">3</div>
+        <div class="game__cell">4</div>
+        <div class="game__cell">5</div>
+        <div class="game__cell">6</div>
+        <div class="game__cell">7</div>
+        <div class="game__cell">8</div>
+        <div class="game__cell">9</div>
+        <p class="game__footer--blue">X (you) 14</p>
+        <p class="game__footer--gray">Ties 32</p>
+        <p class="game__footer--yellow">O (CPU) 11</p>
       </section>
     </main>
     <footer class="footer">

@@ -3,7 +3,7 @@
   display: grid;
 
   grid-template-columns: repeat(3, 1fr);
-
+  gap: 1.75rem 1.25rem;
   &__cell {
     aspect-ratio: 1;
   }
