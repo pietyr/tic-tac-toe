@@ -1,3 +1,10 @@
+@use '../utilities/variables' as var;
+@use '../utilities/typography' as font;
+@use '../utilities/mixins' as mixins;
+@use 'sass:map';
+
 .game {
-  display: none;
+  &__cell {
+    background-color: var.$semi-dark-navy;
+  }
 }
