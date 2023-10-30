@@ -8,6 +8,11 @@
     background-color: var.$semi-dark-navy;
   }
 
+  &__turn-text {
+    color: var.$silver;
+    text-transform: uppercase;
+  }
+
   &__restart {
     background-color: var.$silver;
     border: none;
