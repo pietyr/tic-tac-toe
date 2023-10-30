@@ -11,6 +11,24 @@ const xIcon = document.querySelector(
 const oIcon = document.querySelector(
   '.game-settings__radio-label-o > .game-settings__radio-image',
 );
+const newGameCPUButton = document.querySelector(
+  '.game-settings__button--yellow',
+);
+const newGamePlayerButton = document.querySelector(
+  '.game-settings__button--blue',
+);
+const gameSettingsBoard = document.querySelector('.game-settings');
+const gameBoard = document.querySelector('.game');
+
+newGameCPUButton.addEventListener('click', () => {
+  gameSettingsBoard.style.display = 'none';
+  gameBoard.style.display = 'grid';
+});
+
+newGamePlayerButton.addEventListener('click', () => {
+  gameSettingsBoard.style.display = 'none';
+  gameBoard.style.display = 'grid';
+});
 
 buttonX.addEventListener('click', () => {
   if (playerMark === 'o') {
