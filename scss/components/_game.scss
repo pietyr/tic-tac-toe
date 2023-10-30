@@ -4,7 +4,30 @@
 @use 'sass:map';
 
 .game {
+  &__turn {
+    background-color: var.$semi-dark-navy;
+  }
+
+  &__restart {
+    background-color: var.$silver;
+    border: none;
+  }
+
   &__cell {
     background-color: var.$semi-dark-navy;
+  }
+
+  &__footer {
+    &--blue {
+      background-color: var.$light-blue;
+    }
+
+    &--gray {
+      background-color: var.$silver;
+    }
+
+    &--yellow {
+      background-color: var.$light-yellow;
+    }
   }
 }
