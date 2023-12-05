@@ -4,6 +4,10 @@
 @use 'sass:map';
 
 .game {
+  > * {
+    border-radius: 1rem;
+  }
+
   &__turn {
     background-color: var.$semi-dark-navy;
   }
