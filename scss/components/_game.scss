@@ -4,12 +4,12 @@
 @use 'sass:map';
 
 .game {
-  > * {
-    border-radius: 1rem;
-  }
-
   &__turn {
     background-color: var.$semi-dark-navy;
+    -webkit-box-shadow: 0px 4px 0px 0px var.$dark-navy-shadow;
+    -moz-box-shadow: 0px 4px 0px 0px var.$dark-navy-shadow;
+    box-shadow: 0px 4px 0px 0px var.$dark-navy-shadow;
+    border-radius: 0.75rem;
   }
 
   &__turn-text {
@@ -20,13 +20,23 @@
   &__restart {
     background-color: var.$silver;
     border: none;
+    -webkit-box-shadow: 0px 4px 0px 0px var.$silver-shadow;
+    -moz-box-shadow: 0px 4px 0px 0px var.$silver-shadow;
+    box-shadow: 0px 4px 0px 0px var.$silver-shadow;
+    border-radius: 0.75rem;
   }
 
   &__cell {
     background-color: var.$semi-dark-navy;
+    -webkit-box-shadow: 0px 8px 0px 0px var.$dark-navy-shadow;
+    -moz-box-shadow: 0px 8px 0px 0px var.$dark-navy-shadow;
+    box-shadow: 0px 8px 0px 0px var.$dark-navy-shadow;
+    border-radius: 1rem;
   }
 
   &__footer {
+    border-radius: 0.75rem;
+
     &--blue {
       background-color: var.$light-blue;
     }
