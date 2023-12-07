@@ -65,3 +65,25 @@ radioSelector.addEventListener('animationiteration', () => {
 });
 
 radioSelector.addEventListener('animationstart', () => {});
+
+// GAME
+
+let turn = 'x';
+
+document.querySelectorAll('.game__cell').forEach((cell) => {
+  cell.addEventListener('click', (e) => {
+    const id = e.target.dataset.cellid;
+    console.log(id);
+    e.target.classList.remove('game__cell--x-turn');
+    e.target.classList.remove('game__cell--o-turn');
+
+    if (turn === 'x') {
+      e.target.classList.add('game__cell--x-check');
+      turn = 'o';
+    }
+    if (turn === 'o') {
+      e.target.classList.add('game__cell--o-check');
+      turn = 'x';
+    }
+  });
+});
