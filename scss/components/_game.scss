@@ -48,6 +48,14 @@
         background-image: url('../../assets/icon-o-outline.svg');
       }
     }
+
+    &--x-check {
+      background-image: url('../../assets/icon-x--light.svg');
+    }
+
+    &--o-check {
+      background-image: url('../../assets/icon-o--light.svg');
+    }
   }
 
   &__footer {
