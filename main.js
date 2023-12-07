@@ -77,13 +77,19 @@ document.querySelectorAll('.game__cell').forEach((cell) => {
     e.target.classList.remove('game__cell--x-turn');
     e.target.classList.remove('game__cell--o-turn');
 
-    if (turn === 'x') {
-      e.target.classList.add('game__cell--x-check');
-      turn = 'o';
-    }
-    if (turn === 'o') {
-      e.target.classList.add('game__cell--o-check');
-      turn = 'x';
+    if (
+      !(
+        e.target.classList.contains(`game__cell--x-check`) ||
+        e.target.classList.contains(`game__cell--o-check`)
+      )
+    ) {
+      if (turn === 'x') {
+        e.target.classList.add('game__cell--x-check');
+        turn = 'o';
+      } else if (turn === 'o') {
+        e.target.classList.add('game__cell--o-check');
+        turn = 'x';
+      }
     }
   });
 });
