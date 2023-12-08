@@ -70,6 +70,24 @@ radioSelector.addEventListener('animationstart', () => {});
 
 let turn = 'x';
 
+function changePlayer(player = 'x') {
+  document
+    .querySelector('.game__turn-icon')
+    .setAttribute(
+      'src',
+      `./assets/icon-${player === 'x' ? 'o' : 'x'}--light.svg`,
+    );
+  document.querySelectorAll(`.game__cell--${player}-turn`).forEach((cell) => {
+    if (player === 'x') {
+      cell.classList.remove('game__cell--x-turn');
+      cell.classList.add('game__cell--o-turn');
+    } else {
+      cell.classList.remove('game__cell--o-turn');
+      cell.classList.add('game__cell--x-turn');
+    }
+  });
+}
+
 document.querySelectorAll('.game__cell').forEach((cell) => {
   cell.addEventListener('click', (e) => {
     const id = e.target.dataset.cellid;
@@ -85,9 +103,11 @@ document.querySelectorAll('.game__cell').forEach((cell) => {
     ) {
       if (turn === 'x') {
         e.target.classList.add('game__cell--x-check');
+        changePlayer(turn);
         turn = 'o';
       } else if (turn === 'o') {
         e.target.classList.add('game__cell--o-check');
+        changePlayer(turn);
         turn = 'x';
       }
     }
