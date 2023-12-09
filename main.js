@@ -69,6 +69,9 @@ radioSelector.addEventListener('animationstart', () => {});
 // GAME
 
 let turn = 'x';
+const positions = [];
+positions.length = 9;
+positions.fill(null);
 
 function changePlayer(player = 'x') {
   document
@@ -88,6 +91,35 @@ function changePlayer(player = 'x') {
   });
 }
 
+function checkWin(cellId, positons, turn) {
+  function positionToId(row, column) {
+    return row * 3 + column;
+  }
+
+  function checkRow(row) {
+    const hasWon = true;
+    for (let i = 0; i <= 2; i++) {
+      if (positions[positionToId(row, i)] !== turn) {
+        return false;
+      }
+    }
+    return hasWon;
+  }
+  function checkColumn(column) {
+    const hasWon = true;
+    for (let i = 0; i <= 2; i++) {
+      if (positions[positionToId(i, column)] !== turn) {
+        return false;
+      }
+    }
+    return hasWon;
+  }
+
+  const row = Math.floor(cellId / 3);
+  const column = cellId % 3;
+  return checkRow || checkColumn;
+}
+
 document.querySelectorAll('.game__cell').forEach((cell) => {
   cell.addEventListener('click', (e) => {
     const id = e.target.dataset.cellid;
@@ -101,13 +133,20 @@ document.querySelectorAll('.game__cell').forEach((cell) => {
         e.target.classList.contains(`game__cell--o-check`)
       )
     ) {
+      positions[id] = turn;
       if (turn === 'x') {
         e.target.classList.add('game__cell--x-check');
         changePlayer(turn);
+        if (checkWin(id, positions, turn)) {
+          console.log(`${turn} won`);
+        }
         turn = 'o';
       } else if (turn === 'o') {
         e.target.classList.add('game__cell--o-check');
         changePlayer(turn);
+        if (checkWin(id, positions, turn)) {
+          console.log(`${turn} won`);
+        }
         turn = 'x';
       }
     }
