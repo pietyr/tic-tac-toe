@@ -97,27 +97,33 @@ function checkWin(cellId, positons, turn) {
   }
 
   function checkRow(row) {
-    const hasWon = true;
+    let hasWon = true;
     for (let i = 0; i <= 2; i++) {
-      if (positions[positionToId(row, i)] !== turn) {
-        return false;
-      }
+      hasWon = hasWon && positions[positionToId(row, i)] === turn;
     }
     return hasWon;
   }
   function checkColumn(column) {
-    const hasWon = true;
+    let hasWon = true;
     for (let i = 0; i <= 2; i++) {
-      if (positions[positionToId(i, column)] !== turn) {
-        return false;
-      }
+      hasWon = hasWon && positions[positionToId(i, column)] === turn;
     }
     return hasWon;
   }
 
+  function checkDiagonals() {
+    return (
+      positions[positionToId(1, 1)] === turn &&
+      ((positions[positionToId(0, 0)] === turn &&
+        positions[positionToId(2, 2)] === turn) ||
+        (positions[positionToId(0, 2)] === turn &&
+          positions[positionToId(2, 0)] === turn))
+    );
+  }
+
   const row = Math.floor(cellId / 3);
   const column = cellId % 3;
-  return checkRow || checkColumn;
+  return checkRow(row) || checkColumn(column) || checkDiagonals();
 }
 
 document.querySelectorAll('.game__cell').forEach((cell) => {
