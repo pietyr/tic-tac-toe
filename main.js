@@ -1,6 +1,13 @@
 import './scss/main.scss';
 
 let playerMark = 'o';
+let player2Mark;
+
+let turn;
+let positions;
+let solo;
+let gameEnded = false;
+let nextTurn;
 
 const buttonX = document.querySelector('#radio-x');
 const buttonO = document.querySelector('#radio-o');
@@ -66,12 +73,37 @@ radioSelector.addEventListener('animationiteration', () => {
 
 radioSelector.addEventListener('animationstart', () => {});
 
+newGamePlayerButton.addEventListener('click', () => {
+  gameSettingsBoard.classList.toggle('disabled');
+  gameBoard.classList.toggle('disabled');
+  startGame(false, playerMark);
+});
+
+newGameCPUButton.addEventListener('click', () => {
+  gameSettingsBoard.classList.toggle('disabled');
+  gameBoard.classList.toggle('disabled');
+  startGame(true, playerMark);
+});
+
 // GAME
 
-let turn = 'x';
-const positions = [];
-positions.length = 9;
-positions.fill(null);
+function startGame(singlePlayer = true, playerMark = 'o') {
+  turn = 'x';
+
+  positions = [];
+  positions.length = 9;
+  positions.fill(null);
+  solo = singlePlayer;
+  if (solo) {
+    if (playerMark !== turn) {
+      nextTurn = 'computer';
+      computerTurn();
+    }
+  } else {
+    player2Mark = playerMark === 'o' ? 'x' : 'o';
+    nextTurn = playerMark === turn ? 1 : 2;
+  }
+}
 
 function changePlayer(player = 'x') {
   document
@@ -144,6 +176,7 @@ document.querySelectorAll('.game__cell').forEach((cell) => {
         e.target.classList.add('game__cell--x-check');
         changePlayer(turn);
         if (checkWin(id, positions, turn)) {
+          gameEnded = true;
           console.log(`${turn} won`);
         }
         turn = 'o';
@@ -151,10 +184,34 @@ document.querySelectorAll('.game__cell').forEach((cell) => {
         e.target.classList.add('game__cell--o-check');
         changePlayer(turn);
         if (checkWin(id, positions, turn)) {
+          gameEnded = true;
           console.log(`${turn} won`);
         }
         turn = 'x';
       }
     }
+
+    if (solo && turn !== playerMark && !gameEnded) {
+      console.log('random');
+      computerTurn();
+    }
   });
 });
+
+function computerTurn() {
+  setTimeout(() => {
+    let isChecked = true;
+    let cell;
+    while (isChecked) {
+      console.log('isChecked');
+      const id = Math.floor(Math.random() * 9) + 1;
+      console.log(id);
+      cell = document.querySelector(`.game__cell:nth-of-type(${id})`);
+      console.log(cell);
+      isChecked =
+        cell.classList.contains('game__cell--x-check') ||
+        cell.classList.contains('game__cell--o-check');
+    }
+    cell.click();
+  }, 500);
+}
