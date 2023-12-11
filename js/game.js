@@ -1,10 +1,3 @@
-import './scss/main.scss';
-import loadSettings from './js/new-game';
-
-loadSettings();
-
-// GAME
-
 let turn = 'x';
 const positions = [];
 positions.length = 9;
@@ -95,3 +88,5 @@ document.querySelectorAll('.game__cell').forEach((cell) => {
     }
   });
 });
+
+export default function startGame() {}
