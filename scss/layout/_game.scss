@@ -1,5 +1,4 @@
 .game {
-  // display: none;
   display: grid;
 
   grid-template-columns: repeat(3, 1fr);
@@ -45,4 +44,8 @@
     align-items: center;
     padding-block: 1rem;
   }
+}
+
+.game.disabled {
+  display: none;
 }

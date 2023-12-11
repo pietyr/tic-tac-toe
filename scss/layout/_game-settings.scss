@@ -1,6 +1,5 @@
 .game-settings {
-  // display: flex;
-  display: none;
+  display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2.5rem;
@@ -71,4 +70,8 @@
   &__button {
     padding-block: 1rem;
   }
+}
+
+.game-settings.disabled {
+  display: none;
 }
