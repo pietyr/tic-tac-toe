@@ -61,16 +61,60 @@ export default function addHandlers() {
   });
 
   // New Game (VS CPU)
-  newGameCPUButton.addEventListener('click', () => {
-    gameSettingsBoard.classList.toggle('disabled');
-    gameBoard.classList.toggle('disabled');
-    startGame(playerOneMark, false);
-  });
+  newGameCPUButton.addEventListener('click', newGameClicked(false));
 
   // New Game (VS PLAYER)
-  newGamePlayerButton.addEventListener('click', () => {
+  newGamePlayerButton.addEventListener('click', newGameClicked(true));
+}
+
+function newGameClicked(vsPlayer = true) {
+  return function handleClick() {
     gameSettingsBoard.classList.toggle('disabled');
     gameBoard.classList.toggle('disabled');
-    startGame(playerOneMark, false);
-  });
+    startGame(playerOneMark, vsPlayer);
+    addCellClickEvent();
+  };
 }
+
+function addCellClickEvent() {}
+
+// Cell click event handler
+document.querySelectorAll('.game__cell').forEach((cell) => {
+  cell.addEventListener('click', (e) => {
+    const id = e.target.dataset.cellid;
+    console.log(id);
+    e.target.classList.remove('game__cell--x-turn');
+    e.target.classList.remove('game__cell--o-turn');
+
+    if (
+      !(
+        e.target.classList.contains(`game__cell--x-check`) ||
+        e.target.classList.contains(`game__cell--o-check`)
+      )
+    ) {
+      positions[id] = turn;
+      if (turn === 'x') {
+        e.target.classList.add('game__cell--x-check');
+        changePlayer(turn);
+        if (checkWin(id, positions, turn)) {
+          gameEnded = true;
+          console.log(`${turn} won`);
+        }
+        turn = 'o';
+      } else if (turn === 'o') {
+        e.target.classList.add('game__cell--o-check');
+        changePlayer(turn);
+        if (checkWin(id, positions, turn)) {
+          gameEnded = true;
+          console.log(`${turn} won`);
+        }
+        turn = 'x';
+      }
+    }
+
+    if (solo && turn !== playerMark && !gameEnded) {
+      console.log('random');
+      computerTurn();
+    }
+  });
+});
