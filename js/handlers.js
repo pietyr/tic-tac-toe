@@ -79,10 +79,9 @@ function newGameClicked(vsPlayer = true) {
 }
 
 function loadCells() {
-  // TODO: Dynamically add hover class to all cells
-
   // Cell click event handler
   cells.forEach((cell) => {
+    cell.classList.add(`game__cell--x-turn`);
     cell.addEventListener('click', cellClicked);
   });
 }
@@ -95,7 +94,7 @@ function cellClicked(event) {
   const clickResult = markCell(Number(id));
 
   if (clickResult) {
-    // Remove
+    // Remove hover class
     event.target.classList.remove('game__cell--x-turn');
     event.target.classList.remove('game__cell--o-turn');
   }
