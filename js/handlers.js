@@ -64,13 +64,13 @@ export default function addHandlers() {
   newGameCPUButton.addEventListener('click', () => {
     gameSettingsBoard.classList.toggle('disabled');
     gameBoard.classList.toggle('disabled');
-    startGame(true, playerOneMark);
+    startGame(playerOneMark, false);
   });
 
   // New Game (VS PLAYER)
   newGamePlayerButton.addEventListener('click', () => {
     gameSettingsBoard.classList.toggle('disabled');
     gameBoard.classList.toggle('disabled');
-    startGame(false, playerOneMark);
+    startGame(playerOneMark, false);
   });
 }
