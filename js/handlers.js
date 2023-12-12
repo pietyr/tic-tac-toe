@@ -97,6 +97,9 @@ function cellClicked(event) {
     // Remove hover class
     event.target.classList.remove('game__cell--x-turn');
     event.target.classList.remove('game__cell--o-turn');
+
+    // Show mark in cell
+    event.target.classList.add(`game__cell--${clickResult}-check`);
   }
   /*
 
