@@ -23,8 +23,9 @@ export function markCell(cellId) {
     // Player can move
     if (gameState[cellId] === null) {
       gameState[cellId] = nextTurn;
+      const thisTurn = nextTurn;
       nextTurn = nextTurn === 0 ? 1 : 0;
-      return playersMark[nextTurn];
+      return playersMark[thisTurn];
     }
     // Cell already checked
     return false;
