@@ -1,4 +1,4 @@
-import { startGame } from './game';
+import { startGame, markCell } from './game';
 
 let playerOneMark = document.querySelector(
   '.game-settings__radio-input:checked',
@@ -22,6 +22,8 @@ const newGamePlayerButton = document.querySelector(
 );
 const gameSettingsBoard = document.querySelector('.game-settings');
 const gameBoard = document.querySelector('.game');
+
+const cells = document.querySelectorAll('.game__cell');
 
 export default function addHandlers() {
   // O clicked
@@ -72,19 +74,33 @@ function newGameClicked(vsPlayer = true) {
     gameSettingsBoard.classList.toggle('disabled');
     gameBoard.classList.toggle('disabled');
     startGame(playerOneMark, vsPlayer);
-    addCellClickEvent();
+    loadCells();
   };
 }
 
-function addCellClickEvent() {}
+function loadCells() {
+  // TODO: Dynamically add hover class to all cells
 
-// Cell click event handler
-document.querySelectorAll('.game__cell').forEach((cell) => {
-  cell.addEventListener('click', (e) => {
-    const id = e.target.dataset.cellid;
-    console.log(id);
-    e.target.classList.remove('game__cell--x-turn');
-    e.target.classList.remove('game__cell--o-turn');
+  // Cell click event handler
+  cells.forEach((cell) => {
+    cell.addEventListener('click', cellClicked);
+  });
+}
+
+function cellClicked(event) {
+  const id = event.target.dataset.cellid;
+
+  // false if was already clicked
+  // mark if successful
+  const clickResult = markCell(Number(id));
+
+  if (clickResult) {
+    // Remove
+    event.target.classList.remove('game__cell--x-turn');
+    event.target.classList.remove('game__cell--o-turn');
+  }
+  /*
+
 
     if (
       !(
@@ -116,5 +132,6 @@ document.querySelectorAll('.game__cell').forEach((cell) => {
       console.log('random');
       computerTurn();
     }
-  });
-});
+
+    */
+}
