@@ -1,4 +1,4 @@
-import { startGame, markCell } from './game';
+import { startGame, markCell, getGameState, getNextTurnMark } from './game';
 
 let playerOneMark = document.querySelector(
   '.game-settings__radio-input:checked',
@@ -100,7 +100,11 @@ function cellClicked(event) {
 
     // Show mark in cell
     event.target.classList.add(`game__cell--${clickResult}-check`);
+
+    // Change hover marks for unchecked cells
+    switchHovers(getNextTurnMark(), getGameState());
   }
+
   /*
 
 
@@ -136,4 +140,15 @@ function cellClicked(event) {
     }
 
     */
+}
+
+function switchHovers(nextTurnMark, cellState) {
+  cells.forEach((cell, index) => {
+    if (cellState[index] === null) {
+      cell.classList.remove(
+        `game__cell--${nextTurnMark === 'x' ? 'o' : 'x'}-turn`,
+      );
+      cell.classList.add(`game__cell--${nextTurnMark}-turn`);
+    }
+  });
 }

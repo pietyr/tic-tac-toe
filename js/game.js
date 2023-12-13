@@ -34,6 +34,14 @@ export function markCell(cellId) {
   return false;
 }
 
+export function getGameState() {
+  return gameState;
+}
+
+export function getNextTurnMark() {
+  return playersMark[nextTurn];
+}
+
 export function playComputer() {
   // TODO
 }
