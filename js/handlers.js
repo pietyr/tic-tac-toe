@@ -104,42 +104,6 @@ function cellClicked(event) {
     // Change hover marks for unchecked cells
     switchHovers(getNextTurnMark(), getGameState());
   }
-
-  /*
-
-
-    if (
-      !(
-        e.target.classList.contains(`game__cell--x-check`) ||
-        e.target.classList.contains(`game__cell--o-check`)
-      )
-    ) {
-      positions[id] = turn;
-      if (turn === 'x') {
-        e.target.classList.add('game__cell--x-check');
-        changePlayer(turn);
-        if (checkWin(id, positions, turn)) {
-          gameEnded = true;
-          console.log(`${turn} won`);
-        }
-        turn = 'o';
-      } else if (turn === 'o') {
-        e.target.classList.add('game__cell--o-check');
-        changePlayer(turn);
-        if (checkWin(id, positions, turn)) {
-          gameEnded = true;
-          console.log(`${turn} won`);
-        }
-        turn = 'x';
-      }
-    }
-
-    if (solo && turn !== playerMark && !gameEnded) {
-      console.log('random');
-      computerTurn();
-    }
-
-    */
 }
 
 function switchHovers(nextTurnMark, cellState) {
