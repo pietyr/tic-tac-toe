@@ -112,7 +112,14 @@ function cellClicked(event) {
     switchHovers(getNextTurnMark(), getGameState());
 
     if (isNextComputer()) {
-      setTimeout(playComputer, 300);
+      setTimeout(() => {
+        const [computerPickedId, computerMark] = playComputer();
+        const cell = cells[computerPickedId];
+        cell.classList.remove('game__cell--x-turn');
+        cell.classList.remove('game__cell--o-turn');
+
+        cell.classList.add(`game__cell--${computerMark}-check`);
+      }, 500);
     }
   }
 }
