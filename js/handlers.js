@@ -1,4 +1,11 @@
-import { startGame, markCell, getGameState, getNextTurnMark } from './game';
+import {
+  startGame,
+  markCell,
+  getGameState,
+  getNextTurnMark,
+  isNextComputer,
+  playComputer,
+} from './game';
 
 let playerOneMark = document.querySelector(
   '.game-settings__radio-input:checked',
@@ -103,16 +110,23 @@ function cellClicked(event) {
 
     // Change hover marks for unchecked cells
     switchHovers(getNextTurnMark(), getGameState());
+
+    if (isNextComputer()) {
+      setTimeout(playComputer, 300);
+    }
   }
 }
 
 function switchHovers(nextTurnMark, cellState) {
-  cells.forEach((cell, index) => {
-    if (cellState[index] === null) {
-      cell.classList.remove(
-        `game__cell--${nextTurnMark === 'x' ? 'o' : 'x'}-turn`,
-      );
-      cell.classList.add(`game__cell--${nextTurnMark}-turn`);
-    }
-  });
+  // TODO: change not switching on computer turn to disabling hover icon on computer turn
+  if (!isNextComputer()) {
+    cells.forEach((cell, index) => {
+      if (cellState[index] === null) {
+        cell.classList.remove(
+          `game__cell--${nextTurnMark === 'x' ? 'o' : 'x'}-turn`,
+        );
+        cell.classList.add(`game__cell--${nextTurnMark}-turn`);
+      }
+    });
+  }
 }

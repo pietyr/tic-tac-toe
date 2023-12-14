@@ -42,6 +42,10 @@ export function getNextTurnMark() {
   return playersMark[nextTurn];
 }
 
+export function isNextComputer() {
+  return !isMultiPlayer && nextTurn === 1;
+}
+
 export function playComputer() {
   if (!gameState.includes(null)) {
     return false;
@@ -51,6 +55,9 @@ export function playComputer() {
     do {
       id = Math.floor(Math.random() * 9);
     } while (gameState[id] !== null);
+    gameState[id] = 1;
+    nextTurn = 0;
+    console.log(gameState);
     return id;
   }
 
