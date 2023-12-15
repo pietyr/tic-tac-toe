@@ -111,6 +111,8 @@ function cellClicked(event) {
     // Change hover marks for unchecked cells
     switchHovers(getNextTurnMark(), getGameState());
 
+    switchTurnIndicator(getNextTurnMark());
+
     if (isNextComputer()) {
       setTimeout(() => {
         const [computerPickedId, computerMark] = playComputer();
@@ -119,6 +121,7 @@ function cellClicked(event) {
         cell.classList.remove('game__cell--o-turn');
 
         cell.classList.add(`game__cell--${computerMark}-check`);
+        switchTurnIndicator(getNextTurnMark());
       }, 500);
     }
   }
@@ -136,4 +139,10 @@ function switchHovers(nextTurnMark, cellState) {
       }
     });
   }
+}
+
+function switchTurnIndicator(nextTurnMark) {
+  const turnIcon = document.querySelector('.game__turn-icon');
+  turnIcon.setAttribute('src', `./assets/icon-${nextTurnMark}--light.svg`);
+  turnIcon.setAttribute('alt', `${nextTurnMark.toUpperCase()}`);
 }
