@@ -82,6 +82,9 @@ function newGameClicked(vsPlayer = true) {
     gameBoard.classList.toggle('disabled');
     startGame(playerOneMark, vsPlayer);
     loadCells();
+    if (!vsPlayer && playerOneMark === 'o') {
+      setTimeout(computerMove, 500);
+    }
   };
 }
 
@@ -114,15 +117,7 @@ function cellClicked(event) {
     switchTurnIndicator(getNextTurnMark());
 
     if (isNextComputer()) {
-      setTimeout(() => {
-        const [computerPickedId, computerMark] = playComputer();
-        const cell = cells[computerPickedId];
-        cell.classList.remove('game__cell--x-turn');
-        cell.classList.remove('game__cell--o-turn');
-
-        cell.classList.add(`game__cell--${computerMark}-check`);
-        switchTurnIndicator(getNextTurnMark());
-      }, 500);
+      setTimeout(computerMove, 500);
     }
   }
 }
@@ -145,4 +140,14 @@ function switchTurnIndicator(nextTurnMark) {
   const turnIcon = document.querySelector('.game__turn-icon');
   turnIcon.setAttribute('src', `./assets/icon-${nextTurnMark}--light.svg`);
   turnIcon.setAttribute('alt', `${nextTurnMark.toUpperCase()}`);
+}
+
+function computerMove() {
+  const [computerPickedId, computerMark] = playComputer();
+  const cell = cells[computerPickedId];
+  cell.classList.remove('game__cell--x-turn');
+  cell.classList.remove('game__cell--o-turn');
+
+  cell.classList.add(`game__cell--${computerMark}-check`);
+  switchTurnIndicator(getNextTurnMark());
 }
