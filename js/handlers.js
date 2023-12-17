@@ -83,6 +83,7 @@ function newGameClicked(vsPlayer = true) {
     startGame(playerOneMark, vsPlayer);
     loadCells();
     if (!vsPlayer && playerOneMark === 'o') {
+      switchHovers(getNextTurnMark(), getGameState());
       setTimeout(computerMove, 500);
     }
   };
@@ -123,17 +124,15 @@ function cellClicked(event) {
 }
 
 function switchHovers(nextTurnMark, cellState) {
-  // TODO: change not switching on computer turn to disabling hover icon on computer turn
-  if (!isNextComputer()) {
-    cells.forEach((cell, index) => {
-      if (cellState[index] === null) {
-        cell.classList.remove(
-          `game__cell--${nextTurnMark === 'x' ? 'o' : 'x'}-turn`,
-        );
+  cells.forEach((cell, index) => {
+    if (cellState[index] === null) {
+      cell.classList.remove(`game__cell--x-turn`);
+      cell.classList.remove(`game__cell--o-turn`);
+      if (!isNextComputer()) {
         cell.classList.add(`game__cell--${nextTurnMark}-turn`);
       }
-    });
-  }
+    }
+  });
 }
 
 function switchTurnIndicator(nextTurnMark) {
@@ -149,5 +148,8 @@ function computerMove() {
   cell.classList.remove('game__cell--o-turn');
 
   cell.classList.add(`game__cell--${computerMark}-check`);
-  switchTurnIndicator(getNextTurnMark());
+
+  const next = getNextTurnMark();
+  switchTurnIndicator(next);
+  switchHovers(next, getGameState());
 }
