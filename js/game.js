@@ -61,7 +61,7 @@ export function playComputer() {
 export function isWon(lastCheckedID) {
   const state = gameState[lastCheckedID];
 
-  return checkRow(lastCheckedID, state);
+  return checkRow(lastCheckedID, state) || checkColumn(lastCheckedID, state);
 }
 
 function getId(row, column) {
@@ -79,7 +79,17 @@ function getRow(id) {
 function checkRow(id, state) {
   const row = getRow(id);
   for (let i = 0; i <= 2; i += 1) {
-    if (gameState[getId(row, getColumn(i))] !== state) {
+    if (gameState[getId(row, i)] !== state) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function checkColumn(id, state) {
+  const column = getColumn(id);
+  for (let i = 0; i <= 2; i += 1) {
+    if (gameState[getId(i, column)] !== state) {
       return false;
     }
   }
