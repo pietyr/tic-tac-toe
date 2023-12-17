@@ -12,10 +12,6 @@ export function startGame(pickedMark = 'o', multiPlayer = true) {
   gameState = [];
   gameState.length = 9;
   gameState.fill(null);
-
-  if (!isMultiPlayer && nextTurn === 1) {
-    playComputer();
-  }
 }
 
 export function markCell(cellId) {
@@ -59,6 +55,5 @@ export function playComputer() {
     nextTurn = 0;
     return [id, playersMark[1]];
   }
-
   return false;
 }
