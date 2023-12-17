@@ -57,3 +57,31 @@ export function playComputer() {
   }
   return false;
 }
+
+export function isWon(lastCheckedID) {
+  const state = gameState[lastCheckedID];
+
+  return checkRow(lastCheckedID, state);
+}
+
+function getId(row, column) {
+  return row * 3 + column;
+}
+
+function getColumn(id) {
+  return id % 3;
+}
+
+function getRow(id) {
+  return Math.floor(id / 3);
+}
+
+function checkRow(id, state) {
+  const row = getRow(id);
+  for (let i = 0; i <= 2; i += 1) {
+    if (gameState[getId(row, getColumn(i))] !== state) {
+      return false;
+    }
+  }
+  return true;
+}

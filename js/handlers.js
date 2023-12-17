@@ -5,6 +5,7 @@ import {
   getNextTurnMark,
   isNextComputer,
   playComputer,
+  isWon,
 } from './game';
 
 let playerOneMark = document.querySelector(
