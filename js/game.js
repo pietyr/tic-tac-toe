@@ -125,3 +125,7 @@ function checkDiagonals(id, state) {
   }
   return false;
 }
+
+export function isSinglePlayer() {
+  return !isMultiPlayer;
+}

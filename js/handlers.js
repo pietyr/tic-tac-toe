@@ -6,6 +6,7 @@ import {
   isNextComputer,
   playComputer,
   isWon,
+  isSinglePlayer,
 } from './game';
 
 let playerOneMark = document.querySelector(
@@ -32,6 +33,8 @@ const gameSettingsBoard = document.querySelector('.game-settings');
 const gameBoard = document.querySelector('.game');
 
 const cells = document.querySelectorAll('.game__cell');
+
+const restartButton = document.querySelector('.game__restart');
 
 export default function addHandlers() {
   // O clicked
@@ -79,8 +82,8 @@ export default function addHandlers() {
 
 function newGameClicked(vsPlayer = true) {
   return function handleClick() {
-    gameSettingsBoard.classList.toggle('disabled');
-    gameBoard.classList.toggle('disabled');
+    gameSettingsBoard.classList.add('disabled');
+    gameBoard.classList.remove('disabled');
     startGame(playerOneMark, vsPlayer);
     loadCells();
     if (!vsPlayer && playerOneMark === 'o') {
@@ -95,6 +98,16 @@ function loadCells() {
   cells.forEach((cell) => {
     cell.classList.add(`game__cell--x-turn`);
     cell.addEventListener('click', cellClicked);
+  });
+}
+
+function clearCells() {
+  cells.forEach((cell) => {
+    cell.classList.remove(`game__cell--x-turn`);
+    cell.classList.remove(`game__cell--o-turn`);
+    cell.classList.remove(`game__cell--x-check`);
+    cell.classList.remove(`game__cell--o-check`);
+    cell.removeEventListener('click', cellClicked);
   });
 }
 
@@ -154,3 +167,9 @@ function computerMove() {
   switchTurnIndicator(next);
   switchHovers(next, getGameState());
 }
+
+restartButton.addEventListener('click', () => {
+  clearCells();
+  const startNewGame = newGameClicked(!isSinglePlayer());
+  startNewGame();
+});
