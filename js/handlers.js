@@ -106,7 +106,6 @@ function cellClicked(event) {
   const clickResult = markCell(Number(id));
 
   if (clickResult) {
-    // console.log(isWon(event.target.dataset.cellid));
     // Remove hover class
     event.target.classList.remove('game__cell--x-turn');
     event.target.classList.remove('game__cell--o-turn');

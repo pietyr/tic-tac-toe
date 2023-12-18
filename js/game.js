@@ -59,9 +59,14 @@ export function playComputer() {
 }
 
 export function isWon(lastCheckedID) {
-  const state = gameState[lastCheckedID];
+  const lastID = Number(lastCheckedID);
+  const state = gameState[lastID];
 
-  return checkRow(lastCheckedID, state) || checkColumn(lastCheckedID, state);
+  return (
+    checkRow(lastID, state) ||
+    checkColumn(lastID, state) ||
+    checkDiagonals(lastID, state)
+  );
 }
 
 function getId(row, column) {
@@ -94,4 +99,29 @@ function checkColumn(id, state) {
     }
   }
   return true;
+}
+
+function checkDiagonals(id, state) {
+  if (id % 2 === 0) {
+    // 0, 4, 8 - \ left diagonal \
+    // 2, 4, 6 - / right diagonal /
+
+    const inLeftDiagonal = id === 0 || id === 4 || id === 8;
+    const inRightDiagonal = id === 2 || id === 4 || id === 6;
+
+    const leftDiagonalWon =
+      inLeftDiagonal &&
+      gameState[0] === state &&
+      gameState[4] === state &&
+      gameState[8] === state;
+
+    const rightDiagonalWon =
+      inRightDiagonal &&
+      gameState[2] === state &&
+      gameState[4] === state &&
+      gameState[6] === state;
+
+    return leftDiagonalWon || rightDiagonalWon;
+  }
+  return false;
 }
