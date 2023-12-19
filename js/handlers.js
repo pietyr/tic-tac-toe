@@ -112,11 +112,11 @@ function clearCells() {
 }
 
 function cellClicked(event) {
-  const id = event.target.dataset.cellid;
+  const id = Number(event.target.dataset.cellid);
 
   // false if was already clicked
   // mark if successful
-  const clickResult = markCell(Number(id));
+  const clickResult = markCell(id);
 
   if (clickResult) {
     // Remove hover class
@@ -126,13 +126,17 @@ function cellClicked(event) {
     // Show mark in cell
     event.target.classList.add(`game__cell--${clickResult}-check`);
 
-    // Change hover marks for unchecked cells
-    switchHovers(getNextTurnMark(), getGameState());
+    if (isWon(id)) {
+      roundWon(id);
+    } else {
+      // Change hover marks for unchecked cells
+      switchHovers(getNextTurnMark(), getGameState());
 
-    switchTurnIndicator(getNextTurnMark());
+      switchTurnIndicator(getNextTurnMark());
 
-    if (isNextComputer()) {
-      setTimeout(computerMove, 500);
+      if (isNextComputer()) {
+        setTimeout(computerMove, 500);
+      }
     }
   }
 }
@@ -163,9 +167,13 @@ function computerMove() {
 
   cell.classList.add(`game__cell--${computerMark}-check`);
 
-  const next = getNextTurnMark();
-  switchTurnIndicator(next);
-  switchHovers(next, getGameState());
+  if (isWon(Number(computerPickedId))) {
+    roundWon(Number(computerPickedId));
+  } else {
+    const next = getNextTurnMark();
+    switchTurnIndicator(next);
+    switchHovers(next, getGameState());
+  }
 }
 
 restartButton.addEventListener('click', () => {
@@ -173,3 +181,9 @@ restartButton.addEventListener('click', () => {
   const startNewGame = newGameClicked(!isSinglePlayer());
   startNewGame();
 });
+
+function roundWon(id) {
+  // Change cells to mark win
+  // Add points
+  // Show modal
+}
