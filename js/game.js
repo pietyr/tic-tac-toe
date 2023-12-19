@@ -83,22 +83,28 @@ function getRow(id) {
 
 function checkRow(id, state) {
   const row = getRow(id);
+  const wonID = [];
   for (let i = 0; i <= 2; i += 1) {
-    if (gameState[getId(row, i)] !== state) {
+    const tempId = getId(row, i);
+    if (gameState[tempId] !== state) {
       return false;
     }
+    wonID.push(tempId);
   }
-  return true;
+  return wonID;
 }
 
 function checkColumn(id, state) {
   const column = getColumn(id);
+  const wonID = [];
   for (let i = 0; i <= 2; i += 1) {
-    if (gameState[getId(i, column)] !== state) {
+    const tempId = getId(i, column);
+    if (gameState[tempId] !== state) {
       return false;
     }
+    wonID.push(tempId);
   }
-  return true;
+  return wonID;
 }
 
 function checkDiagonals(id, state) {
@@ -115,13 +121,19 @@ function checkDiagonals(id, state) {
       gameState[4] === state &&
       gameState[8] === state;
 
+    if (leftDiagonalWon) {
+      return [0, 4, 8];
+    }
+
     const rightDiagonalWon =
       inRightDiagonal &&
       gameState[2] === state &&
       gameState[4] === state &&
       gameState[6] === state;
 
-    return leftDiagonalWon || rightDiagonalWon;
+    if (rightDiagonalWon) {
+      return [2, 4, 6];
+    }
   }
   return false;
 }
