@@ -141,3 +141,7 @@ function checkDiagonals(id, state) {
 export function isSinglePlayer() {
   return !isMultiPlayer;
 }
+
+export function getMark(playerId) {
+  return playersMark[playerId];
+}

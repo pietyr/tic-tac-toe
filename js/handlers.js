@@ -7,6 +7,7 @@ import {
   playComputer,
   isWon,
   isSinglePlayer,
+  getMark,
 } from './game';
 
 let playerOneMark = document.querySelector(
@@ -126,8 +127,9 @@ function cellClicked(event) {
     // Show mark in cell
     event.target.classList.add(`game__cell--${clickResult}-check`);
 
-    if (isWon(id)) {
-      roundWon(id);
+    const wonArray = isWon(id);
+    if (Array.isArray(wonArray)) {
+      roundWon(id, clickResult, wonArray);
     } else {
       // Change hover marks for unchecked cells
       switchHovers(getNextTurnMark(), getGameState());
@@ -167,8 +169,9 @@ function computerMove() {
 
   cell.classList.add(`game__cell--${computerMark}-check`);
 
-  if (isWon(Number(computerPickedId))) {
-    roundWon(Number(computerPickedId));
+  const wonArray = isWon(Number(computerPickedId));
+  if (Array.isArray(wonArray)) {
+    roundWon(Number(computerPickedId), computerMark, wonArray);
   } else {
     const next = getNextTurnMark();
     switchTurnIndicator(next);
@@ -182,8 +185,12 @@ restartButton.addEventListener('click', () => {
   startNewGame();
 });
 
-function roundWon(id) {
+function roundWon(id, mark, wonArray) {
   // Change cells to mark win
+  for (const index of wonArray) {
+    cells[index].classList.remove(`game__cell--${mark}-check`);
+    cells[index].classList.add(`game__cell--${mark}-win`);
+  }
   // Add points
   // Show modal
 }
