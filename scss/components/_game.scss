@@ -57,6 +57,16 @@
     &--o-check {
       background-image: url('../../assets/icon-o.svg');
     }
+
+    &--x-win {
+      background-image: url('../../assets/icon-x-outline.svg');
+      background-color: var.$light-yellow;
+    }
+
+    &--o-win {
+      background-image: url('../../assets/icon-o-outline.svg');
+      background-color: var.$light-blue;
+    }
   }
 
   &__footer {
