@@ -191,6 +191,13 @@ function roundWon(id, mark, wonArray) {
     cells[index].classList.remove(`game__cell--${mark}-check`);
     cells[index].classList.add(`game__cell--${mark}-win`);
   }
+
+  // Disable clicks when somebody wins
+  cells.forEach((cell) => {
+    cell.classList.remove(`game__cell--x-turn`);
+    cell.classList.remove(`game__cell--o-turn`);
+    cell.removeEventListener('click', cellClicked);
+  });
   // Add points
   // Show modal
 }
