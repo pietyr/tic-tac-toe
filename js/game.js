@@ -3,6 +3,11 @@ playersMark.length = 2;
 let isMultiPlayer;
 let gameState = [];
 let nextTurn;
+const points = {
+  x: 0,
+  o: 0,
+  ties: 0,
+};
 
 export function startGame(pickedMark = 'o', multiPlayer = true) {
   isMultiPlayer = multiPlayer;
@@ -144,4 +149,8 @@ export function isSinglePlayer() {
 
 export function getMark(playerId) {
   return playersMark[playerId];
+}
+
+export function getPoints() {
+  return { ...points };
 }
