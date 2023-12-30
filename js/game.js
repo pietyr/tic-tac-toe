@@ -67,11 +67,16 @@ export function isWon(lastCheckedID) {
   const lastID = Number(lastCheckedID);
   const state = gameState[lastID];
 
-  return (
+  const won =
     checkRow(lastID, state) ||
     checkColumn(lastID, state) ||
-    checkDiagonals(lastID, state)
-  );
+    checkDiagonals(lastID, state);
+
+  if (won) {
+    points[playersMark[gameState[lastID]]] += 1;
+  }
+
+  return won;
 }
 
 function getId(row, column) {

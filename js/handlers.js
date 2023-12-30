@@ -7,6 +7,7 @@ import {
   playComputer,
   isWon,
   isSinglePlayer,
+  getPoints,
   // getMark,
 } from './game';
 
@@ -212,10 +213,15 @@ function roundWon(id, mark, wonArray) {
     cell.removeEventListener('click', cellClicked);
   });
   // Add points
+  updatePoints(getPoints());
   // Show modal
 }
 
-function updatePoints({ x, o, ties }) {}
+function updatePoints({ x, o, ties }) {
+  xPointsValue.innerHTML = x;
+  oPointsValue.innerHTML = o;
+  tiesPointsValue.innerHTML = ties;
+}
 
 function updateCounterTitles(playerOneMark, vsPlayer) {
   if (vsPlayer) {
