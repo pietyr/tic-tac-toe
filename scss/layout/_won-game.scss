@@ -12,4 +12,28 @@
   &:modal {
     max-width: 100%;
   }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  &__announcement {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  &__button-wrapper {
+    display: flex;
+    gap: 1rem;
+  }
+
+  &__button {
+    padding: 1.125rem;
+    border: none;
+    border-radius: 0.75rem;
+  }
 }
