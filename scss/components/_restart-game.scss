@@ -1,0 +1,39 @@
+@use '../utilities/variables' as var;
+@use '../utilities/typography' as font;
+@use '../utilities/mixins' as mixins;
+@use 'sass:map';
+
+.restart-game {
+  background-color: var.$dark-navy;
+
+  text-transform: uppercase;
+
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 66%);
+  }
+
+  &__text {
+    color: var.$silver;
+    font-weight: map.get(font.$font-weights, 'heading');
+    font-size: map.get(font.$font-sizes, 'heading-l');
+    letter-spacing: map.get(font.$font-kerning, 'heading-l');
+  }
+
+  &__button {
+    text-transform: uppercase;
+    color: var.$dark-navy;
+    font-weight: map.get(font.$font-weights, 'heading');
+    font-size: map.get(font.$font-sizes, 'heading-xs');
+    letter-spacing: map.get(font.$font-kerning, 'heading-xs');
+
+    &--cancel {
+      background-color: var.$silver;
+      @include mixins.shadow(darken(var.$silver, 25%), 4px);
+    }
+
+    &--restart {
+      background-color: var.$light-yellow;
+      @include mixins.shadow(darken(var.$light-yellow, 25%), 4px);
+    }
+  }
+}
