@@ -52,7 +52,10 @@ const tiesPointsValue = document.querySelector('.game__footer-value--ties');
 
 // Modals
 const wonGameModal = document.querySelector('.won-game');
-wonGameModal.showModal();
+const wonModalHeader = document.querySelector('.won-game__header');
+const wonGameImg = document.querySelector('.won-game__mark');
+const wonGameText = document.querySelector('.won-game__announcement-text');
+
 export default function addHandlers() {
   // O clicked
   buttonX.addEventListener('click', () => {
@@ -218,6 +221,7 @@ function roundWon(id, mark, wonArray) {
   // Add points
   updatePoints(getPoints());
   // Show modal
+  showRoundModal(mark, !isSinglePlayer());
 }
 
 function updatePoints({ x, o, ties }) {
@@ -248,4 +252,37 @@ function updateCounterTitles(playerOneMark, vsPlayer) {
   }
 }
 
-function showRoundModal(winner, vsPlayer) {}
+function showRoundModal(winner, vsPlayer) {
+  if (winner === 'ties') {
+    wonModalHeader.classList.add('won-game__header--invisible');
+
+    wonGameImg.classList.add('won-game__mark--invisible');
+
+    wonGameText.innerHTML = 'round tied';
+    wonGameText.className = 'won-game__announcement-text';
+  } else {
+    wonModalHeader.classList.remove('won-game__header--invisible');
+    wonGameImg.classList.remove('won-game__mark--invisible');
+
+    wonGameText.innerHTML = 'takes the round';
+    wonGameText.className = `won-game__announcement-text won-game__announcement-text--${
+      winner === 'x' ? 'blue' : 'yellow'
+    }`;
+
+    wonGameImg.setAttribute('alt', winner);
+    wonGameImg.setAttribute('src', `./assets/icon-${winner}.svg`);
+    if (vsPlayer) {
+      wonModalHeader.innerHTML = `player ${
+        winner === playerOneMark ? 1 : 2
+      } wins`;
+    }
+    if (!vsPlayer) {
+      if (winner === playerOneMark) {
+        wonModalHeader.innerHTML = 'you won';
+      } else {
+        wonModalHeader.innerHTML = 'oh no, you lost...';
+      }
+    }
+  }
+  wonGameModal.showModal();
+}

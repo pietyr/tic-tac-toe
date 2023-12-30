@@ -25,6 +25,15 @@
 
   &__header {
     margin-block: 0;
+    &--invisible {
+      display: none;
+    }
+  }
+
+  &__mark {
+    &--invisible {
+      display: none;
+    }
   }
 
   &__announcement {
