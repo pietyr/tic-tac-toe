@@ -61,48 +61,71 @@ const wonGameNextRoundButton = document.querySelector(
 );
 const wonGameQuitButton = document.querySelector('.won-game__button--quit');
 
+function handleXClick() {
+  if (playerOneMark === 'o') {
+    // radioSelector.style.animationDirection = 'reverse';
+    radioSelector.style.animationPlayState = 'running';
+    setTimeout(() => {
+      xIcon.setAttribute('src', './assets/icon-x--dark.svg');
+    }, 100);
+
+    setTimeout(() => {
+      oIcon.setAttribute('src', './assets/icon-o--light.svg');
+    }, 300);
+  }
+  playerOneMark = 'x';
+}
+
+function handleOClick() {
+  if (playerOneMark === 'x') {
+    // radioSelector.style.animationDirection = 'normal';
+    radioSelector.style.animationPlayState = 'running';
+    setTimeout(() => {
+      oIcon.setAttribute('src', './assets/icon-o--dark.svg');
+    }, 100);
+
+    setTimeout(() => {
+      xIcon.setAttribute('src', './assets/icon-x--light.svg');
+    }, 300);
+  }
+  playerOneMark = 'o';
+}
+
+function handleAnimation() {
+  radioSelector.style.animationPlayState = 'paused';
+}
+
 export default function addHandlers() {
   // O clicked
-  buttonX.addEventListener('click', () => {
-    if (playerOneMark === 'o') {
-      // radioSelector.style.animationDirection = 'reverse';
-      radioSelector.style.animationPlayState = 'running';
-      setTimeout(() => {
-        xIcon.setAttribute('src', './assets/icon-x--dark.svg');
-      }, 100);
-
-      setTimeout(() => {
-        oIcon.setAttribute('src', './assets/icon-o--light.svg');
-      }, 300);
-    }
-    playerOneMark = 'x';
-  });
+  buttonX.addEventListener('click', handleXClick);
 
   // X clicked
-  buttonO.addEventListener('click', () => {
-    if (playerOneMark === 'x') {
-      // radioSelector.style.animationDirection = 'normal';
-      radioSelector.style.animationPlayState = 'running';
-      setTimeout(() => {
-        oIcon.setAttribute('src', './assets/icon-o--dark.svg');
-      }, 100);
+  buttonO.addEventListener('click', handleOClick);
 
-      setTimeout(() => {
-        xIcon.setAttribute('src', './assets/icon-x--light.svg');
-      }, 300);
-    }
-    playerOneMark = 'o';
-  });
-
-  radioSelector.addEventListener('animationiteration', () => {
-    radioSelector.style.animationPlayState = 'paused';
-  });
+  radioSelector.addEventListener('animationiteration', handleAnimation);
 
   // New Game (VS CPU)
   newGameCPUButton.addEventListener('click', newGameClicked(false));
 
   // New Game (VS PLAYER)
   newGamePlayerButton.addEventListener('click', newGameClicked(true));
+}
+
+export function removeHandlers() {
+  // O clicked
+  buttonX.removeEventListener('click', handleXClick);
+
+  // X clicked
+  buttonO.removeEventListener('click', handleOClick);
+
+  radioSelector.removeEventListener('animationiteration', handleAnimation);
+
+  // New Game (VS CPU)
+  newGameCPUButton.removeEventListener('click', newGameClicked(false));
+
+  // New Game (VS PLAYER)
+  newGamePlayerButton.removeEventListener('click', newGameClicked(true));
+  radioSelector.removeAttribute('style');
 }
 
 function newGameClicked(vsPlayer = true) {
@@ -112,10 +135,12 @@ function newGameClicked(vsPlayer = true) {
     startGame(playerOneMark, vsPlayer);
     loadCells();
     updateCounterTitles(playerOneMark, vsPlayer);
+    updatePoints(getPoints());
     if (!vsPlayer && playerOneMark === 'o') {
       switchHovers(getNextTurnMark(), getGameState());
       setTimeout(computerMove, 500);
     }
+    removeHandlers();
   };
 }
 
@@ -306,4 +331,15 @@ wonGameNextRoundButton.addEventListener('click', () => {
     switchHovers(getNextTurnMark(), getGameState());
     setTimeout(computerMove, 500);
   }
+});
+
+wonGameQuitButton.addEventListener('click', () => {
+  clearCells();
+  wonGameModal.close();
+  oIcon.setAttribute('src', './assets/icon-o--dark.svg');
+  xIcon.setAttribute('src', './assets/icon-x--light.svg');
+  gameBoard.classList.add('disabled');
+  gameSettingsBoard.classList.remove('disabled');
+  playerOneMark = 'o';
+  addHandlers();
 });
