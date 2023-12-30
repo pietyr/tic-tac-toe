@@ -254,7 +254,7 @@ function roundWon(id, mark, wonArray) {
   updatePoints(getPoints());
   // Show modal
   setTimeout(() => {
-    showRoundModal(mark, !isSinglePlayer);
+    showRoundModal(mark, !isSinglePlayer());
   }, 500);
 }
 
