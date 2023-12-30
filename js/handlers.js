@@ -63,6 +63,12 @@ const wonGameQuitButton = document.querySelector('.won-game__button--quit');
 
 // Restart modal
 const restartModal = document.querySelector('.restart-game');
+const cancelRestartButton = document.querySelector(
+  '.restart-game__button--cancel',
+);
+const restartModalButton = document.querySelector(
+  '.restart-game__button--restart',
+);
 
 function handleXClick() {
   if (playerOneMark === 'o') {
@@ -234,12 +240,6 @@ function computerMove() {
   }
 }
 
-restartButton.addEventListener('click', () => {
-  clearCells();
-  const startNewGame = newGameClicked(!isSinglePlayer());
-  startNewGame();
-});
-
 function roundWon(id, mark, wonArray) {
   // Change cells to mark win
   for (const index of wonArray) {
@@ -336,18 +336,30 @@ wonGameNextRoundButton.addEventListener('click', () => {
   }
 });
 
-wonGameQuitButton.addEventListener('click', () => {
+function quitGame() {
   clearCells();
-  wonGameModal.close();
   oIcon.setAttribute('src', './assets/icon-o--dark.svg');
   xIcon.setAttribute('src', './assets/icon-x--light.svg');
   gameBoard.classList.add('disabled');
   gameSettingsBoard.classList.remove('disabled');
   playerOneMark = 'o';
   addHandlers();
+}
+
+wonGameQuitButton.addEventListener('click', () => {
+  wonGameModal.close();
+  quitGame();
 });
 
 restartButton.addEventListener('click', () => {
-  // showModal
   restartModal.showModal();
+});
+
+cancelRestartButton.addEventListener('click', () => {
+  restartModal.close();
+});
+
+restartModalButton.addEventListener('click', () => {
+  restartModal.close();
+  quitGame();
 });
