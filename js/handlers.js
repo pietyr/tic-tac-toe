@@ -7,14 +7,15 @@ import {
   playComputer,
   isWon,
   isSinglePlayer,
-  getMark,
+  // getMark,
 } from './game';
 
 let playerOneMark = document.querySelector(
   '.game-settings__radio-input:checked',
 ).value;
 
-// Settings DOM nodes
+// Loading DOM nodes
+// Game settings nodes
 const buttonX = document.querySelector('#radio-x');
 const buttonO = document.querySelector('#radio-o');
 const radioSelector = document.querySelector('.game-settings__radio-selector');
@@ -31,11 +32,22 @@ const newGamePlayerButton = document.querySelector(
   '.game-settings__button--blue',
 );
 const gameSettingsBoard = document.querySelector('.game-settings');
+
+// Game board nodes
 const gameBoard = document.querySelector('.game');
-
 const cells = document.querySelectorAll('.game__cell');
-
 const restartButton = document.querySelector('.game__restart');
+
+// Point counters nodes
+const xPointsCounterTitle = document.querySelector(
+  '.game__footer-title-value--x',
+);
+const oPointsCounterTitle = document.querySelector(
+  '.game__footer-title-value--o',
+);
+const xPointsValue = document.querySelector('.game__footer-value--x');
+const oPointsValue = document.querySelector('.game__footer-value--o');
+const tiesPointsValue = document.querySelector('.game__footer-value--ties');
 
 export default function addHandlers() {
   // O clicked
@@ -87,6 +99,7 @@ function newGameClicked(vsPlayer = true) {
     gameBoard.classList.remove('disabled');
     startGame(playerOneMark, vsPlayer);
     loadCells();
+    updateCounterTitles(playerOneMark, vsPlayer);
     if (!vsPlayer && playerOneMark === 'o') {
       switchHovers(getNextTurnMark(), getGameState());
       setTimeout(computerMove, 500);
@@ -200,4 +213,28 @@ function roundWon(id, mark, wonArray) {
   });
   // Add points
   // Show modal
+}
+
+function updatePoints({ x, o, ties }) {}
+
+function updateCounterTitles(playerOneMark, vsPlayer) {
+  if (vsPlayer) {
+    if (playerOneMark === 'x') {
+      // X(player1), O(player2)
+      xPointsCounterTitle.innerHTML = 'Player 1';
+      oPointsCounterTitle.innerHTML = 'Player 2';
+    } else {
+      // X(player2), O(player1)
+      xPointsCounterTitle.innerHTML = 'Player 2';
+      oPointsCounterTitle.innerHTML = 'Player 1';
+    }
+  } else if (playerOneMark === 'x') {
+    // X(you), O(CPU)
+    xPointsCounterTitle.innerHTML = 'You';
+    oPointsCounterTitle.innerHTML = 'CPU';
+  } else {
+    // X(CPU), O(You)
+    xPointsCounterTitle.innerHTML = 'CPU';
+    oPointsCounterTitle.innerHTML = 'You';
+  }
 }
