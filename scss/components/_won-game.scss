@@ -1,5 +1,9 @@
+@use '../utilities/variables' as var;
+
 .won-game {
+  background-color: var.$dark-navy;
+
   &::backdrop {
-    background-color: rgba(0, 0, 0, 50%);
+    background-color: rgba(0, 0, 0, 66%);
   }
 }
