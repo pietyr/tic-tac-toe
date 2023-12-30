@@ -61,6 +61,9 @@ const wonGameNextRoundButton = document.querySelector(
 );
 const wonGameQuitButton = document.querySelector('.won-game__button--quit');
 
+// Restart modal
+const restartModal = document.querySelector('.restart-game');
+
 function handleXClick() {
   if (playerOneMark === 'o') {
     // radioSelector.style.animationDirection = 'reverse';
@@ -342,4 +345,9 @@ wonGameQuitButton.addEventListener('click', () => {
   gameSettingsBoard.classList.remove('disabled');
   playerOneMark = 'o';
   addHandlers();
+});
+
+restartButton.addEventListener('click', () => {
+  // showModal
+  restartModal.showModal();
 });
