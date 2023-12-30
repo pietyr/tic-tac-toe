@@ -2,9 +2,6 @@
 
 # TODO
 
-- create restart modal
-- add handlers to restart modal buttons
-- style footer
 - save game state in the browser
 - create better AI
 

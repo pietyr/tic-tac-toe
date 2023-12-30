@@ -1,0 +1,18 @@
+@use '../utilities/variables' as var;
+@use '../utilities/typography' as font;
+@use 'sass:map';
+
+.footer {
+  color: var.$silver;
+  font-weight: map.get(font.$font-weights, 'heading');
+  font-size: map.get(font.$font-sizes, 'heading-xs');
+  letter-spacing: map.get(font.$font-kerning, 'heading-xs');
+  &__link {
+    color: var.$light-blue;
+    transition: color 0.2s;
+    text-decoration: none;
+    &:hover {
+      color: var.$light-blue-hover;
+    }
+  }
+}
