@@ -50,6 +50,9 @@ const xPointsValue = document.querySelector('.game__footer-value--x');
 const oPointsValue = document.querySelector('.game__footer-value--o');
 const tiesPointsValue = document.querySelector('.game__footer-value--ties');
 
+// Modals
+const wonGameModal = document.querySelector('.won-game');
+wonGameModal.showModal();
 export default function addHandlers() {
   // O clicked
   buttonX.addEventListener('click', () => {
@@ -244,3 +247,5 @@ function updateCounterTitles(playerOneMark, vsPlayer) {
     oPointsCounterTitle.innerHTML = 'You';
   }
 }
+
+function showRoundModal(winner, vsPlayer) {}

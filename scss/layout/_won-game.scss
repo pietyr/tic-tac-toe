@@ -1,0 +1,15 @@
+.won-game {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding-block: 3rem;
+  border: none;
+
+  // overwrite default browser value
+  &:modal {
+    max-width: 100%;
+  }
+}
