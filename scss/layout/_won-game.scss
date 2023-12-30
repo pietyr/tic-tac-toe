@@ -1,7 +1,10 @@
 .won-game {
   width: 100%;
 
-  display: flex;
+  display: none;
+  &[open] {
+    display: flex;
+  }
   flex-direction: column;
   align-items: center;
 
