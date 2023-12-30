@@ -33,6 +33,11 @@
     animation-iteration-count: infinite;
 
     // animation: swipe 5s ease-in-out 0s 1 reverse both running;
+    cursor: pointer;
+  }
+
+  &__radio-label {
+    cursor: pointer;
   }
 
   &__radio-input {
@@ -56,6 +61,7 @@
     font-size: map.get(font.$font-sizes, 'heading-s');
     letter-spacing: map.get(font.$font-kerning, 'heading-s');
     text-transform: uppercase;
+    cursor: pointer;
 
     border-radius: 1rem;
     &--yellow {
