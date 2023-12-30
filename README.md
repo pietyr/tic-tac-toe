@@ -1,5 +1,13 @@
 # work-in-progress
 
+# TODO
+
+- create restart modal
+- add handlers to restart modal buttons
+- style footer
+- save game state in the browser
+- create better AI
+
 ## The challenge
 
 - Your challenge is to build out this Tic Tac Toe game and get it looking as close to the design as possible.
