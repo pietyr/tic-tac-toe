@@ -1,9 +1,54 @@
 @use '../utilities/variables' as var;
+@use '../utilities/typography' as font;
+@use '../utilities/mixins' as mixins;
+@use 'sass:map';
 
 .won-game {
   background-color: var.$dark-navy;
 
+  text-transform: uppercase;
+
   &::backdrop {
     background-color: rgba(0, 0, 0, 66%);
+  }
+
+  &__header {
+    color: var.$silver;
+    font-weight: map.get(font.$font-weights, 'heading');
+    font-size: map.get(font.$font-sizes, 'heading-xs');
+    letter-spacing: map.get(font.$font-kerning, 'heading-xs');
+  }
+
+  &__announcement-text {
+    color: var.$silver;
+    font-weight: map.get(font.$font-weights, 'heading');
+    font-size: map.get(font.$font-sizes, 'heading-l');
+    letter-spacing: map.get(font.$font-kerning, 'heading-l');
+
+    &--blue {
+      color: var.$light-blue;
+    }
+
+    &--yellow {
+      color: var.$light-yellow;
+    }
+  }
+
+  &__button {
+    text-transform: uppercase;
+    color: var.$dark-navy;
+    font-weight: map.get(font.$font-weights, 'heading');
+    font-size: map.get(font.$font-sizes, 'heading-xs');
+    letter-spacing: map.get(font.$font-kerning, 'heading-xs');
+
+    &--quit {
+      background-color: var.$silver;
+      @include mixins.shadow(darken(var.$silver, 25%), 4px);
+    }
+
+    &--next {
+      background-color: var.$light-yellow;
+      @include mixins.shadow(darken(var.$light-yellow, 25%), 4px);
+    }
   }
 }
