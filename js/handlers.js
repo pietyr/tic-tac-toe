@@ -8,6 +8,7 @@ import {
   isWon,
   isSinglePlayer,
   getPoints,
+  nextRound,
   // getMark,
 } from './game';
 
@@ -50,11 +51,15 @@ const xPointsValue = document.querySelector('.game__footer-value--x');
 const oPointsValue = document.querySelector('.game__footer-value--o');
 const tiesPointsValue = document.querySelector('.game__footer-value--ties');
 
-// Modals
+// Won game modal
 const wonGameModal = document.querySelector('.won-game');
 const wonModalHeader = document.querySelector('.won-game__header');
 const wonGameImg = document.querySelector('.won-game__mark');
 const wonGameText = document.querySelector('.won-game__announcement-text');
+const wonGameNextRoundButton = document.querySelector(
+  '.won-game__button--next',
+);
+const wonGameQuitButton = document.querySelector('.won-game__button--quit');
 
 export default function addHandlers() {
   // O clicked
@@ -128,6 +133,8 @@ function clearCells() {
     cell.classList.remove(`game__cell--o-turn`);
     cell.classList.remove(`game__cell--x-check`);
     cell.classList.remove(`game__cell--o-check`);
+    cell.classList.remove(`game__cell--x-win`);
+    cell.classList.remove(`game__cell--o-win`);
     cell.removeEventListener('click', cellClicked);
   });
 }
@@ -221,7 +228,9 @@ function roundWon(id, mark, wonArray) {
   // Add points
   updatePoints(getPoints());
   // Show modal
-  showRoundModal(mark, !isSinglePlayer());
+  setTimeout(() => {
+    showRoundModal(mark, !isSinglePlayer);
+  }, 500);
 }
 
 function updatePoints({ x, o, ties }) {
@@ -286,3 +295,15 @@ function showRoundModal(winner, vsPlayer) {
   }
   wonGameModal.showModal();
 }
+
+wonGameNextRoundButton.addEventListener('click', () => {
+  nextRound();
+  clearCells();
+  loadCells();
+  updateCounterTitles(playerOneMark, !isSinglePlayer());
+  wonGameModal.close();
+  if (isSinglePlayer() && playerOneMark === 'o') {
+    switchHovers(getNextTurnMark(), getGameState());
+    setTimeout(computerMove, 500);
+  }
+});

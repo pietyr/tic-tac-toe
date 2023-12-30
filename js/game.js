@@ -3,6 +3,7 @@ playersMark.length = 2;
 let isMultiPlayer;
 let gameState = [];
 let nextTurn;
+let startTurn;
 const points = {
   x: 0,
   o: 0,
@@ -14,6 +15,17 @@ export function startGame(pickedMark = 'o', multiPlayer = true) {
   playersMark[0] = pickedMark;
   playersMark[1] = pickedMark === 'o' ? 'x' : 'o';
   nextTurn = pickedMark === 'x' ? 0 : 1;
+  startTurn = nextTurn;
+  gameState = [];
+  gameState.length = 9;
+  gameState.fill(null);
+  points.x = 0;
+  points.o = 0;
+  points.ties = 0;
+}
+
+export function nextRound() {
+  nextTurn = startTurn;
   gameState = [];
   gameState.length = 9;
   gameState.fill(null);
