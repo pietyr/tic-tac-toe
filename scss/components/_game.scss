@@ -25,6 +25,11 @@
     box-shadow: 0px 4px 0px 0px var.$silver-shadow;
     border-radius: 0.75rem;
     cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: lighten(var.$silver, 10%);
+    }
   }
 
   &__cell {
@@ -33,40 +38,50 @@
     -moz-box-shadow: 0px 8px 0px 0px var.$dark-navy-shadow;
     box-shadow: 0px 8px 0px 0px var.$dark-navy-shadow;
     border-radius: 1rem;
-    transition: 0.2s;
+    transition-property: background-size, background-color;
+    transition: 0.1s;
     background-position: center;
     background-repeat: no-repeat;
+    background-size: 0;
 
     &--x-turn {
       cursor: pointer;
+      background-size: 0;
       &:hover {
         background-image: url('../../assets/icon-x-outline.svg');
+        background-size: 66px;
       }
     }
 
     &--o-turn {
       cursor: pointer;
+      background-size: 0;
       &:hover {
         background-image: url('../../assets/icon-o-outline.svg');
+        background-size: 66px;
       }
     }
 
     &--x-check {
       background-image: url('../../assets/icon-x.svg');
+      background-size: 64px;
     }
 
     &--o-check {
       background-image: url('../../assets/icon-o.svg');
+      background-size: 64px;
     }
 
     &--x-win {
       background-image: url('../../assets/icon-x--dark.svg');
       background-color: var.$light-blue;
+      background-size: 64px;
     }
 
     &--o-win {
       background-image: url('../../assets/icon-o--dark.svg');
       background-color: var.$light-yellow;
+      background-size: 64px;
     }
   }
 

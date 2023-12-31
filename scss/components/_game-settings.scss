@@ -62,15 +62,24 @@
     letter-spacing: map.get(font.$font-kerning, 'heading-s');
     text-transform: uppercase;
     cursor: pointer;
+    transition: 0.2s;
 
     border-radius: 1rem;
     &--yellow {
       background-color: var.$light-yellow;
       @include mixins.shadow(darken(var.$light-yellow, 12.5%), 8px);
+
+      &:hover {
+        background-color: var.$light-yellow-hover;
+      }
     }
     &--blue {
       background-color: var.$light-blue;
       @include mixins.shadow(darken(var.$light-blue, 12.5%), 8px);
+
+      &:hover {
+        background-color: var.$light-blue-hover;
+      }
     }
   }
 }

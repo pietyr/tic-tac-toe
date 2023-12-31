@@ -40,15 +40,25 @@
     font-weight: map.get(font.$font-weights, 'heading');
     font-size: map.get(font.$font-sizes, 'heading-xs');
     letter-spacing: map.get(font.$font-kerning, 'heading-xs');
+    transition: background-color 0.2s;
+    cursor: pointer;
 
     &--quit {
       background-color: var.$silver;
       @include mixins.shadow(darken(var.$silver, 25%), 4px);
+
+      &:hover {
+        background-color: lighten(var.$silver, 10%);
+      }
     }
 
     &--next {
       background-color: var.$light-yellow;
       @include mixins.shadow(darken(var.$light-yellow, 25%), 4px);
+
+      &:hover {
+        background-color: var.$light-yellow-hover;
+      }
     }
   }
 }
