@@ -2,7 +2,7 @@
 
 This is a solution to the [Tic Tac Toe challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/tic-tac-toe-game-Re7ZF_E2v) and [Project: Tic Tac Toe on The Odin Project](https://www.theodinproject.com/lessons/node-path-javascript-tic-tac-toe).
 
-# [Open live version](https://your-live-site-url.com)
+# [Open live version](https://pietyr.github.io/tic-tac-toe/)
 
 ## Table of contents
 
@@ -42,7 +42,7 @@ Users should be able to:
 
 ### Links
 
-- Live Site: [GitHub Pages](https://your-live-site-url.com)
+- Live Site: [GitHub Pages](https://pietyr.github.io/tic-tac-toe/)
 - Solution Code: [GitHub](https://github.com/pietyr/tic-tac-toe)
 
 ## My process
