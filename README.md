@@ -63,6 +63,7 @@ Users should be able to:
 - CSS Grid
 - Vite
 - Basics of CSS animations
+- SASS mixins
 
 ### Continued development
 
