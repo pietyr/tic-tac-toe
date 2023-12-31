@@ -171,3 +171,11 @@ export function getMark(playerId) {
 export function getPoints() {
   return { ...points };
 }
+
+export function isDraw() {
+  const draw = !gameState.includes(null);
+  if (draw) {
+    points.ties += 1;
+  }
+  return draw;
+}

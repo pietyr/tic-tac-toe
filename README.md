@@ -2,6 +2,7 @@
 
 # TODO
 
+- check for ties
 - save game state in the browser
 - create better AI
 

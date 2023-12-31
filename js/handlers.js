@@ -9,6 +9,7 @@ import {
   isSinglePlayer,
   getPoints,
   nextRound,
+  isDraw,
   // getMark,
 } from './game';
 
@@ -191,6 +192,8 @@ function cellClicked(event) {
     const wonArray = isWon(id);
     if (Array.isArray(wonArray)) {
       roundWon(id, clickResult, wonArray);
+    } else if (isDraw()) {
+      console.log('draw');
     } else {
       // Change hover marks for unchecked cells
       switchHovers(getNextTurnMark(), getGameState());
@@ -233,6 +236,8 @@ function computerMove() {
   const wonArray = isWon(Number(computerPickedId));
   if (Array.isArray(wonArray)) {
     roundWon(Number(computerPickedId), computerMark, wonArray);
+  } else if (isDraw()) {
+    console.log('draw');
   } else {
     const next = getNextTurnMark();
     switchTurnIndicator(next);
