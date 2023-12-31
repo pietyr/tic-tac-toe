@@ -154,10 +154,10 @@ function newGameClicked(vsPlayer = true) {
   };
 }
 
-function loadCells() {
+function loadCells(firstTurn = 'x') {
   // Cell click event handler
   cells.forEach((cell) => {
-    cell.classList.add(`game__cell--x-turn`);
+    cell.classList.add(`game__cell--${firstTurn}-turn`);
     cell.addEventListener('click', cellClicked);
   });
 }
@@ -347,10 +347,10 @@ function showRoundModal(winner, vsPlayer) {
 wonGameNextRoundButton.addEventListener('click', () => {
   nextRound();
   clearCells();
-  loadCells();
+  loadCells(getNextTurnMark());
   updateCounterTitles(playerOneMark, !isSinglePlayer());
   wonGameModal.close();
-  if (isSinglePlayer() && playerOneMark === 'o') {
+  if (isSinglePlayer() && isNextComputer()) {
     switchHovers(getNextTurnMark(), getGameState());
     setTimeout(computerMove, 500);
   }
