@@ -48,7 +48,7 @@
       cursor: pointer;
       background-size: 0;
       &:hover {
-        background-image: url('../../assets/icon-x-outline.svg');
+        background-image: url('/assets/icon-x-outline.svg');
         background-size: 66px;
       }
     }
@@ -57,29 +57,29 @@
       cursor: pointer;
       background-size: 0;
       &:hover {
-        background-image: url('../../assets/icon-o-outline.svg');
+        background-image: url('/assets/icon-o-outline.svg');
         background-size: 66px;
       }
     }
 
     &--x-check {
-      background-image: url('../../assets/icon-x.svg');
+      background-image: url('/assets/icon-x.svg');
       background-size: 64px;
     }
 
     &--o-check {
-      background-image: url('../../assets/icon-o.svg');
+      background-image: url('/assets/icon-o.svg');
       background-size: 64px;
     }
 
     &--x-win {
-      background-image: url('../../assets/icon-x--dark.svg');
+      background-image: url('/assets/icon-x--dark.svg');
       background-color: var.$light-blue;
       background-size: 64px;
     }
 
     &--o-win {
-      background-image: url('../../assets/icon-o--dark.svg');
+      background-image: url('/assets/icon-o--dark.svg');
       background-color: var.$light-yellow;
       background-size: 64px;
     }

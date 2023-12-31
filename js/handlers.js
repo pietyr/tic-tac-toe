@@ -13,6 +13,17 @@ import {
   // getMark,
 } from './game';
 
+import iconODarkURL from '../assets/icon-o--dark.svg';
+import iconOLightURL from '../assets/icon-o--light.svg';
+import iconOOutlineURL from '../assets/icon-o-outline.svg';
+import iconOURL from '../assets/icon-o.svg';
+import iconRestartURL from '../assets/icon-restart.svg';
+import iconXDarkURL from '../assets/icon-x--dark.svg';
+import iconXLightURL from '../assets/icon-x--light.svg';
+import iconXOutlineURL from '../assets/icon-x-outline.svg';
+import iconXURL from '../assets/icon-x.svg';
+import logoURL from '../assets/logo.svg';
+
 let playerOneMark = document.querySelector(
   '.game-settings__radio-input:checked',
 ).value;
@@ -76,11 +87,11 @@ function handleXClick() {
     // radioSelector.style.animationDirection = 'reverse';
     radioSelector.style.animationPlayState = 'running';
     setTimeout(() => {
-      xIcon.setAttribute('src', './assets/icon-x--dark.svg');
+      xIcon.setAttribute('src', iconXDarkURL);
     }, 100);
 
     setTimeout(() => {
-      oIcon.setAttribute('src', './assets/icon-o--light.svg');
+      oIcon.setAttribute('src', iconOLightURL);
     }, 300);
   }
   playerOneMark = 'x';
@@ -91,11 +102,11 @@ function handleOClick() {
     // radioSelector.style.animationDirection = 'normal';
     radioSelector.style.animationPlayState = 'running';
     setTimeout(() => {
-      oIcon.setAttribute('src', './assets/icon-o--dark.svg');
+      oIcon.setAttribute('src', iconODarkURL);
     }, 100);
 
     setTimeout(() => {
-      xIcon.setAttribute('src', './assets/icon-x--light.svg');
+      xIcon.setAttribute('src', iconXLightURL);
     }, 300);
   }
   playerOneMark = 'o';
@@ -221,7 +232,10 @@ function switchHovers(nextTurnMark, cellState) {
 
 function switchTurnIndicator(nextTurnMark) {
   const turnIcon = document.querySelector('.game__turn-icon');
-  turnIcon.setAttribute('src', `./assets/icon-${nextTurnMark}--light.svg`);
+  turnIcon.setAttribute(
+    'src',
+    nextTurnMark === 'x' ? iconXLightURL : iconOLightURL,
+  );
   turnIcon.setAttribute('alt', `${nextTurnMark.toUpperCase()}`);
 }
 
@@ -327,7 +341,7 @@ function showRoundModal(winner, vsPlayer) {
     }`;
 
     wonGameImg.setAttribute('alt', winner);
-    wonGameImg.setAttribute('src', `./assets/icon-${winner}.svg`);
+    wonGameImg.setAttribute('src', winner === 'x' ? iconXURL : iconOURL);
     if (vsPlayer) {
       wonModalHeader.innerHTML = `player ${
         winner === playerOneMark ? 1 : 2
@@ -358,8 +372,8 @@ wonGameNextRoundButton.addEventListener('click', () => {
 
 function quitGame() {
   clearCells();
-  oIcon.setAttribute('src', './assets/icon-o--dark.svg');
-  xIcon.setAttribute('src', './assets/icon-x--light.svg');
+  oIcon.setAttribute('src', iconODarkURL);
+  xIcon.setAttribute('src', iconXLightURL);
   gameBoard.classList.add('disabled');
   gameSettingsBoard.classList.remove('disabled');
   playerOneMark = 'o';
