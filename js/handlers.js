@@ -193,7 +193,7 @@ function cellClicked(event) {
     if (Array.isArray(wonArray)) {
       roundWon(id, clickResult, wonArray);
     } else if (isDraw()) {
-      console.log('draw');
+      roundTied();
     } else {
       // Change hover marks for unchecked cells
       switchHovers(getNextTurnMark(), getGameState());
@@ -237,7 +237,7 @@ function computerMove() {
   if (Array.isArray(wonArray)) {
     roundWon(Number(computerPickedId), computerMark, wonArray);
   } else if (isDraw()) {
-    console.log('draw');
+    roundTied();
   } else {
     const next = getNextTurnMark();
     switchTurnIndicator(next);
@@ -263,6 +263,21 @@ function roundWon(id, mark, wonArray) {
   // Show modal
   setTimeout(() => {
     showRoundModal(mark, !isSinglePlayer());
+  }, 500);
+}
+
+function roundTied() {
+  // Disable clicks when somebody wins
+  cells.forEach((cell) => {
+    cell.classList.remove(`game__cell--x-turn`);
+    cell.classList.remove(`game__cell--o-turn`);
+    cell.removeEventListener('click', cellClicked);
+  });
+  // Add points
+  updatePoints(getPoints());
+  // Show modal
+  setTimeout(() => {
+    showRoundModal('ties', !isSinglePlayer());
   }, 500);
 }
 
